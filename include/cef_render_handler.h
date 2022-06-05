@@ -154,7 +154,7 @@ class CefRenderHandler : public virtual CefBaseRefCounted {
   // Called when an element has been rendered to the shared texture handle.
   // |type| indicates whether the element is the view or the popup widget.
   // |dirtyRects| contains the set of rectangles in pixel coordinates that need
-// to be repainted. |shared_handle| is an OS specific type defined below. This
+  // to be repainted. |shared_handle| is an OS specific type defined below. This
   // function is only called when cef_window_tInfo::shared_texture_enabled is
   // set to true (1), and is currently only supported on Windows and Mac.
   //
@@ -183,7 +183,11 @@ class CefRenderHandler : public virtual CefBaseRefCounted {
                                   PaintElementType type,
                                   const RectList& dirtyRects,
                                   void* shared_handle) {}
-
+  ///
+  // New implementation by Jim. Doesn't used keyed_mutexes.
+  // There's a bool which signals a new texture.
+  ///
+  /*--cef()--*/
   virtual void OnAcceleratedPaint2(CefRefPtr<CefBrowser> browser,
                                    PaintElementType type,
                                    const RectList& dirtyRects,
